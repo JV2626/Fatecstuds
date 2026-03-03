@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatec Tracker | João ADS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="ph ph-target"></i>
+            <h2>FATEC <span>TRACKER</span></h2>
+        </div>
+        
+        <div class="widget-container">
+            <div class="countdown-widget">
+                <i class="ph ph-timer"></i>
+                <div id="relogio">Calculando...</div>
+                <small>Para a Prova (Jun/2026)</small>
+            </div>
+
+            <div class="pomodoro-widget">
+                <div class="pomo-header"><i class="ph ph-brain"></i> Pomodoro (25m)</div>
+                <div id="pomo-timer">25:00</div>
+                <div class="pomo-controls">
+                    <button class="btn-pomo" onclick="iniciarPomodoro()"><i class="ph ph-play"></i></button>
+                    <button class="btn-pomo" onclick="pausarPomodoro()"><i class="ph ph-pause"></i></button>
+                    <button class="btn-pomo" onclick="resetarPomodoro()"><i class="ph ph-arrow-counter-clockwise"></i></button>
+                </div>
+            </div>
+
+            <div class="lofi-widget">
+                <div class="pomo-header"><i class="ph ph-headphones"></i> Lofi Station</div>
+                <iframe width="100%" height="80" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=0&controls=0" title="Lofi Beats" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px; margin-top: 5px;"></iframe>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-item active" onclick="openTab(event, 'checklist')"><i class="ph ph-list-checks"></i> O Que Estudar</button>
+            <button class="nav-item" onclick="openTab(event, 'cronograma')"><i class="ph ph-calendar-check"></i> Cronograma</button>
+            <button class="nav-item" onclick="openTab(event, 'simulados')"><i class="ph ph-chart-line-up"></i> Simulados</button>
+            <button class="nav-item" onclick="openTab(event, 'redacoes')"><i class="ph ph-pen-nib"></i> Redação</button>
+            <button class="nav-item" onclick="openTab(event, 'provas-pdf')"><i class="ph ph-file-pdf"></i> Provas em PDF</button>
+        </nav>
+        
+        <div class="user-info">
+            <p>João | ADS Noturno</p>
+            <small>Foco: Itapetininga</small>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <section id="checklist" class="tab-content active">
+            <div class="header-tab flex-header">
+                <div>
+                    <h1>Mapa de Batalha: Edital Completo</h1>
+                    <p>O nível de profundidade que vai garantir a sua aprovação.</p>
+                </div>
+                <div class="progress-widget">
+                    <div class="progress-info">
+                        <span id="progresso-texto">0% Concluído</span>
+                        <button class="btn-danger" onclick="zerarChecklist()"><i class="ph ph-arrow-counter-clockwise"></i> Zerar</button>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-fill" id="barra-progresso"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="subject-grid">
+                <div class="checklist-card" style="border-top-color: #b11116;">
+                    <h3><i class="ph ph-function"></i> Matemática & Lógica</h3>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-1"> Matemática Básica (Frações, MMC, Escalas)</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-2"> Leitura de Gráficos e Tabelas</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-3"> Regra de Três (Simples e Composta)</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-4"> Porcentagem e Juros</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-5"> Funções de 1º e 2º Grau</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-6"> Progressões (PA e PG)</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-7"> Geometria Plana e Espacial</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-8"> Lógica: Tabelas-Verdade e Equivalência</label>
+                </div>
+
+                <div class="checklist-card" style="border-top-color: #10b981;">
+                    <h3><i class="ph ph-lightning"></i> Ciências da Natureza</h3>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-1"> Física: Eletrodinâmica (Potência e Consumo)</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-2"> Física: Mecânica e Termologia</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-3"> Química: Separação de Misturas e pH</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-4"> Química: Estequiometria e Orgânica Básica</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-5"> Biologia: Ecologia e Impactos Ambientais</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-6"> Biologia: Genética e Sistema ABO</label>
+                </div>
+
+                <div class="checklist-card" style="border-top-color: #f59e0b;">
+                    <h3><i class="ph ph-globe"></i> Ciências Humanas</h3>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="hum-1"> História: Era Vargas e Industrialização</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="hum-2"> História: Ditadura Militar e Brasil Colônia</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="hum-3"> História: Guerras Mundiais e Fria</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="hum-4"> Geografia: Globalização e Geopolítica</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="hum-5"> Geografia: Urbanização e Matrizes Energéticas</label>
+                </div>
+
+                <div class="checklist-card" style="border-top-color: #3b82f6;">
+                    <h3><i class="ph ph-translate"></i> Linguagens (Port/Inglês)</h3>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="lin-1"> Interpretação: Charges e Propagandas</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="lin-2"> Coesão e Coerência (Conectivos)</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="lin-3"> Figuras de Linguagem</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="lin-4"> Inglês: Leitura Instrumental</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="lin-5"> Inglês: Vocabulário Técnico</label>
+                </div>
+            </div>
+        </section>
+
+        <section id="cronograma" class="tab-content">
+            <h1>Cronograma de Guerra (Março a Junho)</h1>
+            <div class="fases-grid">
+                <div class="fase-card">
+                    <div class="fase-badge">Fase 1: Março e Abril</div>
+                    <h4>Construção de Base</h4>
+                    <p>Foco total em <strong>Zerar a Teoria</strong>. Assistir aulas curtas e fazer listas de exercícios.</p>
+                </div>
+                <div class="fase-card">
+                    <div class="fase-badge" style="background: #fef3c7; color: #d97706;">Fase 2: Maio</div>
+                    <h4>Prática e Resistência</h4>
+                    <p>Resolver provas antigas. Construir o vocabulário de conectivos para a redação.</p>
+                </div>
+                <div class="fase-card">
+                    <div class="fase-badge" style="background: #fee2e2; color: #ef4444;">Fase 3: Junho (Reta Final)</div>
+                    <h4>Modo Simulado</h4>
+                    <p>Apenas revisão de erros e provas completas cronometradas (4 horas reais).</p>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="schedule-table">
+                    <thead><tr><th>Dia</th><th>Expediente</th><th>Estudo (Noite)</th></tr></thead>
+                    <tbody>
+                        <tr><td>Segunda</td><td>Trabalho</td><td>Matemática (Teoria) + 15 Questões</td></tr>
+                        <tr><td>Terça</td><td>Trabalho</td><td>Português & Inglês (Interpretação)</td></tr>
+                        <tr><td>Quarta</td><td>Trabalho</td><td>Natureza (Fórmulas e listas)</td></tr>
+                        <tr><td>Quinta</td><td>Trabalho</td><td>Humanas + Lógica de Programação</td></tr>
+                        <tr><td>Sexta</td><td>Trabalho</td><td>Revisão dos erros da semana</td></tr>
+                        <tr><td>Sábado</td><td>Descanso</td><td>Manhã: 1 Redação. Tarde/Noite: Com a Vitória!</td></tr>
+                        <tr><td>Domingo</td><td>Preparação</td><td>Tarde: Simulado em PDF (4h direto).</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="simulados" class="tab-content">
+            <h1>Evolução nos Simulados</h1>
+            <div class="tracker-container">
+                <div class="form-card">
+                    <h3>Registrar Novo Simulado</h3>
+                    <input type="text" id="sim-nome" placeholder="Ex: Prova 2025.1">
+                    <input type="number" id="sim-nota" placeholder="Acertos (Ex: 38)" max="54">
+                    <button class="btn-primary" onclick="adicionarSimulado()">Salvar Nota</button>
+                </div>
+                <div class="chart-card">
+                    <canvas id="graficoSimulados"></canvas>
+                </div>
+            </div>
+            <div id="lista-simulados" class="history-list"></div>
+        </section>
+
+        <section id="redacoes" class="tab-content">
+            <h1>Framework e Laboratório de Redação</h1>
+            <div class="redacao-grid" style="margin-bottom: 40px;">
+                <div class="redacao-card" style="border-top-color: #10b981;">
+                    <h3>1. Estrutura Perfeita</h3>
+                    <div class="topic-item"><h4>Introdução (5-7 linhas)</h4><p>Apresente o tema (Repertório) + Realidade + Tese.</p></div>
+                    <div class="topic-item"><h4>Desenvolvimento 1 e 2 (7-9 linhas)</h4><p>Tópico frasal + Explicação + Exemplo + Conclusão.</p></div>
+                    <div class="topic-item"><h4>Conclusão (5-7 linhas)</h4><p>Retome a tese + Proponha reflexão ou solução.</p></div>
+                </div>
+                <div class="redacao-card" style="border-top-color: #f59e0b;">
+                    <h3>2. Conectivos</h3>
+                    <div class="topic-item"><h4>• Desenvolvimento:</h4><p>"Sob esse viés...", "Em primeiro lugar...", "Ademais..."</p></div>
+                    <div class="topic-item"><h4>• Conclusão:</h4><p>"Portanto...", "Infere-se, logo, que...", "Em suma..."</p></div>
+                </div>
+            </div>
+
+            <div class="tracker-container" style="border-top: 2px dashed #cbd5e1; padding-top: 30px;">
+                <div class="form-card">
+                    <h3>Registrar Nova Redação</h3>
+                    <input type="text" id="red-tema" placeholder="Tema (Ex: Impacto da IA)">
+                    <input type="number" id="red-nota" placeholder="Nota Estimada (0 a 100)" max="100">
+                    <textarea id="red-obs" placeholder="O que melhorar?" rows="3"></textarea>
+                    <button class="btn-primary" onclick="adicionarRedacao()">Salvar Histórico</button>
+                </div>
+                <div id="lista-redacoes" class="history-list full-width"></div>
+            </div>
+        </section>
+
+        <section id="provas-pdf" class="tab-content">
+            <div class="header-tab">
+                <h1>Biblioteca Oficial de Provas</h1>
+                <p>Abra os PDFs e faça os simulados aqui mesmo.</p>
+            </div>
+            <div class="pdf-gallery">
+                <div class="pdf-box">
+                    <div class="pdf-header"><h3>Prova 2026 - 1º Semestre</h3><span class="fase-badge">Mais Recente</span></div>
+                    <iframe src="ProvaFatec 2026-1sem.pdf" class="pdf-viewer"></iframe>
+                </div>
+                <div class="pdf-box">
+                    <div class="pdf-header"><h3>Prova 2025 - 2º Semestre</h3></div>
+                    <iframe src="ProvaFatec 2025-2sem.pdf" class="pdf-viewer"></iframe>
+                </div>
+                <div class="pdf-box">
+                    <div class="pdf-header"><h3>Prova 2025 - 1º Semestre</h3></div>
+                    <iframe src="ProvaFatec 2025-1sem.pdf" class="pdf-viewer"></iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        function openTab(evt, tabName) {
+            let i, tabcontent, navitems;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
+            navitems = document.getElementsByClassName("nav-item");
+            for (i = 0; i < navitems.length; i++) navitems[i].classList.remove("active");
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
