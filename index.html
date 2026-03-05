@@ -41,6 +41,7 @@
         <nav>
             <button class="nav-item active" onclick="openTab(event, 'checklist')"><i class="ph ph-list-checks"></i> Mapa de Batalha</button>
             <button class="nav-item" onclick="openTab(event, 'cronograma')"><i class="ph ph-calendar-check"></i> Ciclo de Estudos</button>
+            <button class="nav-item" onclick="openTab(event, 'bancos-questoes')"><i class="ph ph-database"></i> Arsenal de Questões</button>
             <button class="nav-item" onclick="openTab(event, 'simulados')"><i class="ph ph-chart-line-up"></i> Treinos & Desempenho</button>
             <button class="nav-item" onclick="openTab(event, 'redacoes')"><i class="ph ph-pen-nib"></i> Oficina de Redação</button>
             <button class="nav-item" onclick="openTab(event, 'provas-pdf')"><i class="ph ph-notebook"></i> Biblioteca de Provas</button>
@@ -116,9 +117,50 @@
                     </select>
                 </div>
             </div>
-            
             <div class="cycle-grid" id="cronograma-container"></div>
+        </section>
+
+        <section id="bancos-questoes" class="tab-content">
+            <h1>Arsenal de Questões</h1>
+            <p>Plataformas gratuitas recomendadas para treinar a teoria após o vídeo e jogar a nota no Tracker.</p>
             
+            <div class="redacao-grid">
+                <div class="redacao-card" style="border-top-color: #3b82f6;">
+                    <h3><i class="ph ph-magnifying-glass"></i> Qconcursos</h3>
+                    <p>O maior do Brasil. Permite resolver 10 questões gratuitas por dia. Excelente para ler os comentários de outros alunos.</p>
+                    <div class="topic-item">
+                        <h4>Filtro Exato para a FATEC:</h4>
+                        <p>• <b>Banca:</b> Centro Paula Souza ou FAT<br>
+                           • <b>Instituição:</b> FATEC<br>
+                           • <b>Disciplina:</b> (Ex: Matemática)<br>
+                           • <b>Assunto:</b> (Ex: Regra de Três)</p>
+                    </div>
+                    <a href="https://www.qconcursos.com/questoes-de-concursos/questoes" target="_blank" class="btn-external" style="background: #3b82f6; margin-top: 15px;"><i class="ph ph-link"></i> Abrir Qconcursos</a>
+                </div>
+
+                <div class="redacao-card" style="border-top-color: #10b981;">
+                    <h3><i class="ph ph-student"></i> Estuda.com</h3>
+                    <p>Plataforma muito amigável voltada para o ENEM e Vestibulares tradicionais. Ótima para treinar no celular.</p>
+                    <div class="topic-item">
+                        <h4>Filtro Exato para a FATEC:</h4>
+                        <p>• Menu Esquerdo: <b>Questões</b><br>
+                           • <b>Instituição:</b> FATEC (SP)<br>
+                           • <b>Disciplina & Assunto:</b> De acordo com o card do cronograma do dia.</p>
+                    </div>
+                    <a href="https://app.estuda.com/questoes/" target="_blank" class="btn-external" style="background: #10b981; margin-top: 15px;"><i class="ph ph-link"></i> Abrir Estuda.com</a>
+                </div>
+
+                <div class="redacao-card" style="border-top-color: #f59e0b;">
+                    <h3><i class="ph ph-terminal-window"></i> O "Hack" do Google</h3>
+                    <p>Se as cotas diárias gratuitas dos sites acabarem, use esta técnica de busca no Google para achar questões resolvidas.</p>
+                    <div class="topic-item">
+                        <h4>O que digitar na pesquisa:</h4>
+                        <p><i>"FATEC eletrodinâmica potencia site:brainly.com.br"</i></p>
+                        <p style="margin-top: 8px;"><i>"FATEC conectivos site:qconcursos.com"</i></p>
+                        <p style="margin-top: 8px; color: #64748b;">*O comando "site:" fura os bloqueios e leva direto para a questão.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="simulados" class="tab-content">
@@ -144,7 +186,7 @@
                             <option value="Prova 2026.1">Prova 2026.1</option>
                             <option value="Prova 2025.2">Prova 2025.2</option>
                             <option value="Prova 2025.1">Prova 2025.1</option>
-                            <option value="Treino Externo">Treino Externo</option>
+                            <option value="Treino Externo (Qconcursos/Estuda)">Treino Externo</option>
                         </select>
                     </div>
                     
@@ -214,7 +256,7 @@
                         <h4>Fatec 2025.2</h4>
                         <span>64 Questões</span>
                     </div>
-                    <div class="prova-card" onclick="carregarProva('ProvaFatec 2025-1sem.pdf', '2025.1')">
+                    <div class="prova-card" onclick="carregarProva('ProvaFatec - 2025-1sem.pdf', '2025.1')">
                         <i class="ph ph-file-pdf"></i>
                         <h4>Fatec 2025.1</h4>
                         <span>54 Questões</span>
@@ -253,5 +295,4 @@
         }
     </script>
 </body>
-
 </html>

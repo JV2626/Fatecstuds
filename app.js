@@ -122,7 +122,7 @@ function renderizarCronograma(semana) {
     
     dadosSemana.forEach(dia => {
         const btnYoutube = dia.search 
-            ? `<a href="https://www.youtube.com/results?search_query=${dia.search}" target="_blank"><i class="ph ph-youtube-logo"></i> Vídeo</a>` 
+            ? `<a href="https://www.youtube.com/results?search_query=${dia.search}" target="_blank" class="btn-yt"><i class="ph ph-youtube-logo"></i> Vídeo</a>` 
             : ``;
 
         let corFundo = "var(--dark)";
@@ -173,14 +173,8 @@ function toggleGabarito() {
         
         respostas.forEach((letra, i) => {
             const item = document.createElement('div');
-            item.style.padding = "6px";
-            item.style.background = "white";
-            item.style.border = "1px solid #cbd5e1";
-            item.style.borderRadius = "6px";
-            item.style.textAlign = "center";
-            item.style.fontWeight = "bold";
-            item.style.fontSize = "0.9rem";
-            item.innerHTML = `${i+1}: <span style="color:#b11116; font-size:1.1rem; margin-left:5px;">${letra}</span>`;
+            item.className = 'gab-item';
+            item.innerHTML = `${i+1}: <span>${letra}</span>`;
             grid.appendChild(item);
         });
     }
