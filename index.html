@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fatec Tracker Pro | João ADS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <aside class="sidebar">
+    <div class="bg-glow blob-1"></div>
+    <div class="bg-glow blob-2"></div>
+
+    <aside class="sidebar glass-panel">
         <div class="logo">
             <i class="ph ph-rocket-launch"></i>
             <h2>FATEC <span>TRACKER</span></h2>
         </div>
         
         <div class="widget-container">
-            <div class="countdown-widget">
+            <div class="countdown-widget neon-border-blue">
                 <i class="ph ph-timer"></i>
                 <div id="relogio">Calculando...</div>
                 <small>Vestibular 2026.2</small>
             </div>
 
-            <div class="pomodoro-widget">
-                <div class="pomo-header"><i class="ph ph-brain"></i> Foco (25m)</div>
+            <div class="pomodoro-widget neon-border-green">
+                <div class="pomo-header"><i class="ph ph-brain"></i> Foco FATEC (25m)</div>
                 <div id="pomo-timer">25:00</div>
                 <div class="pomo-controls">
                     <button class="btn-pomo" onclick="iniciarPomodoro()"><i class="ph ph-play"></i></button>
@@ -32,7 +36,7 @@
                 </div>
             </div>
 
-            <div class="lofi-widget">
+            <div class="lofi-widget neon-border-purple">
                 <div class="pomo-header"><i class="ph ph-headphones"></i> Lofi Station</div>
                 <iframe width="100%" height="60" src="https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=0&controls=0" frameborder="0" allow="autoplay" style="border-radius: 8px;"></iframe>
             </div>
@@ -41,15 +45,19 @@
         <nav>
             <button class="nav-item active" onclick="openTab(event, 'checklist')"><i class="ph ph-list-checks"></i> Mapa de Batalha</button>
             <button class="nav-item" onclick="openTab(event, 'cronograma')"><i class="ph ph-calendar-check"></i> Ciclo de Estudos</button>
+            <button class="nav-item" onclick="openTab(event, 'quiz')"><i class="ph ph-game-controller"></i> Simulador Interativo</button>
             <button class="nav-item" onclick="openTab(event, 'bancos-questoes')"><i class="ph ph-database"></i> Arsenal de Questões</button>
-            <button class="nav-item" onclick="openTab(event, 'simulados')"><i class="ph ph-chart-line-up"></i> Treinos & Desempenho</button>
+            <button class="nav-item" onclick="openTab(event, 'simulados')"><i class="ph ph-chart-line-up"></i> Desempenho Geral</button>
             <button class="nav-item" onclick="openTab(event, 'redacoes')"><i class="ph ph-pen-nib"></i> Oficina de Redação</button>
             <button class="nav-item" onclick="openTab(event, 'provas-pdf')"><i class="ph ph-notebook"></i> Biblioteca de Provas</button>
         </nav>
         
         <div class="user-info">
-            <p>João | ADS Noturno</p>
-            <small>Foco: Itapetininga</small>
+            <div class="user-avatar"><i class="ph ph-user"></i></div>
+            <div class="user-details">
+                <p>João | ADS</p>
+                <small>Itapetininga</small>
+            </div>
         </div>
     </aside>
 
@@ -58,41 +66,40 @@
             <div class="header-tab flex-header">
                 <div>
                     <h1>Progresso de Conteúdo</h1>
-                    <p>Dominou a teoria? Marque para ganhar XP.</p>
+                    <p>Dominaste a teoria? Marca para ganhar XP e avançar.</p>
                 </div>
-                <div class="progress-widget">
+                <div class="progress-widget glass-panel">
                     <div class="progress-info">
                         <span id="progresso-texto">0% Concluído</span>
-                        <button class="btn-danger" onclick="zerarChecklist()"><i class="ph ph-arrow-counter-clockwise"></i> Zerar</button>
+                        <button class="btn-icon-danger" onclick="zerarChecklist()" title="Zerar Progresso"><i class="ph ph-arrow-counter-clockwise"></i></button>
                     </div>
-                    <div class="progress-bar-bg"><div class="progress-fill" id="barra-progresso"></div></div>
+                    <div class="progress-bar-bg"><div class="progress-fill glow-red" id="barra-progresso"></div></div>
                 </div>
             </div>
-            
             <div class="subject-grid">
-                <div class="checklist-card" style="border-top-color: #b11116;">
-                    <h3><i class="ph ph-function"></i> Exatas</h3>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-1"> Regra de Três/Porcentagem</label>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-2"> Gráficos e Tabelas</label>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-3"> Funções e Geometria</label>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-4"> Lógica e Matrizes</label>
+                <div class="checklist-card glass-panel" style="border-top: 4px solid var(--primary);">
+                    <h3><i class="ph ph-function" style="color: var(--primary);"></i> Exatas</h3>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-1"> <span class="checkmark"></span> Regra de Três/Percentagem</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-2"> <span class="checkmark"></span> Gráficos e Tabelas</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-3"> <span class="checkmark"></span> Funções e Geometria</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="mat-4"> <span class="checkmark"></span> Lógica e Matrizes</label>
                 </div>
-                <div class="checklist-card" style="border-top-color: #10b981;">
-                    <h3><i class="ph ph-lightning"></i> Natureza</h3>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-1"> Eletrodinâmica</label>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-2"> Ecologia/Biomas</label>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-3"> Química Geral</label>
+                <div class="checklist-card glass-panel" style="border-top: 4px solid var(--correct);">
+                    <h3><i class="ph ph-lightning" style="color: var(--correct);"></i> Natureza</h3>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-1"> <span class="checkmark"></span> Eletrodinâmica</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-2"> <span class="checkmark"></span> Ecologia/Biomas</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="nat-3"> <span class="checkmark"></span> Química Geral</label>
                 </div>
-                <div class="checklist-card" style="border-top-color: #3b82f6;">
-                    <h3><i class="ph ph-translate"></i> Linguagens</h3>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="lin-1"> Interpretação de Texto</label>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="lin-2"> Conectivos/Coesão</label>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="lin-3"> Inglês Instrumental</label>
+                <div class="checklist-card glass-panel" style="border-top: 4px solid var(--accent);">
+                    <h3><i class="ph ph-translate" style="color: var(--accent);"></i> Linguagens</h3>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="lin-1"> <span class="checkmark"></span> Interpretação de Texto</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="lin-2"> <span class="checkmark"></span> Conectivos/Coesão</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="lin-3"> <span class="checkmark"></span> Inglês Instrumental</label>
                 </div>
-                <div class="checklist-card" style="border-top-color: #f59e0b;">
-                    <h3><i class="ph ph-globe"></i> Humanas</h3>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="hum-1"> Era Vargas/História BR</label>
-                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="hum-2"> Globalização/Geopolítica</label>
+                <div class="checklist-card glass-panel" style="border-top: 4px solid var(--warning);">
+                    <h3><i class="ph ph-globe" style="color: var(--warning);"></i> Humanas</h3>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="hum-1"> <span class="checkmark"></span> Era Vargas/História BR</label>
+                    <label class="check-item"><input type="checkbox" onchange="salvarChecklist()" id="hum-2"> <span class="checkmark"></span> Globalização/Geopolítica</label>
                 </div>
             </div>
         </section>
@@ -100,12 +107,12 @@
         <section id="cronograma" class="tab-content">
             <div class="header-tab flex-header">
                 <div>
-                    <h1>Sua Jornada Semanal</h1>
-                    <p>O conteúdo se atualiza. Altere a semana conforme o seu avanço.</p>
+                    <h1>A Tua Jornada Semanal</h1>
+                    <p>O conteúdo atualiza-se. Altera a semana conforme o teu avanço.</p>
                 </div>
-                <div class="week-selector">
+                <div class="week-selector glass-panel">
                     <label for="semana-select"><i class="ph ph-calendar-plus"></i> Período Atual:</label>
-                    <select id="semana-select" onchange="mudarSemana()">
+                    <select id="semana-select" class="modern-select" onchange="mudarSemana()">
                         <option value="1">Semana 1 - Base de Sobrevivência</option>
                         <option value="2">Semana 2 - Aprofundamento</option>
                         <option value="3">Semana 3 - Cálculos e Reações</option>
@@ -120,85 +127,143 @@
             <div class="cycle-grid" id="cronograma-container"></div>
         </section>
 
+        <section id="quiz" class="tab-content">
+            <div class="header-tab flex-header">
+                <div>
+                    <h1>Simulador de Combate</h1>
+                    <p>Treina com as 125 questões inéditas padronizadas para a FATEC.</p>
+                </div>
+            </div>
+
+            <div id="quiz-setup" class="form-card glass-panel" style="max-width: 600px; margin: 0 auto;">
+                <div class="card-icon-header"><i class="ph ph-crosshair"></i></div>
+                <h3 style="text-align: center; margin-bottom: 25px;">Configurar Bateria de Questões</h3>
+                
+                <label class="modern-label">Matéria Foco:</label>
+                <select id="quiz-materia" class="modern-select" style="margin-bottom: 20px;">
+                    <option value="Todas">Simulado Completo (Misto)</option>
+                    <option value="Matemática">Matemática</option>
+                    <option value="Lógica">Raciocínio Lógico</option>
+                    <option value="Português">Português</option>
+                    <option value="Inglês">Inglês</option>
+                    <option value="Física">Física</option>
+                    <option value="Química">Química</option>
+                    <option value="Biologia">Biologia</option>
+                    <option value="História">História</option>
+                    <option value="Geografia">Geografia</option>
+                    <option value="Multidisciplinar">Multidisciplinar</option>
+                </select>
+
+                <label class="modern-label">Quantidade de Questões:</label>
+                <select id="quiz-qtd" class="modern-select" style="margin-bottom: 30px;">
+                    <option value="5">Bateria Rápida (5 questões)</option>
+                    <option value="10">Treino Padrão (10 questões)</option>
+                    <option value="15">Resistência (15 questões)</option>
+                    <option value="30">Desafio (30 questões)</option>
+                </select>
+
+                <button class="btn-primary btn-glow" onclick="iniciarQuiz()">Iniciar Simulação <i class="ph ph-play"></i></button>
+            </div>
+
+            <div id="quiz-active" class="hidden glass-panel quiz-container">
+                <div class="quiz-header">
+                    <span class="quiz-badge" id="qb-materia">Matéria</span>
+                    <span class="quiz-counter" id="qb-contador">Questão 1 / 5</span>
+                </div>
+                
+                <div class="quiz-body">
+                    <div id="q-texto-base" class="texto-base glass-inner"></div>
+                    <h3 id="q-pergunta" class="pergunta-ativa"></h3>
+                    
+                    <div id="q-alternativas" class="alt-grid"></div>
+
+                    <div id="q-feedback" class="hidden feedback-box glass-inner">
+                        <h4 id="feedback-title"></h4>
+                        <p id="feedback-text"></p>
+                    </div>
+
+                    <button id="btn-acao-quiz" class="btn-primary btn-glow" onclick="acaoQuizPrincipal()" disabled>Confirmar Resposta</button>
+                </div>
+            </div>
+
+            <div id="quiz-results" class="hidden form-card glass-panel text-center" style="max-width: 600px; margin: 0 auto;">
+                <div class="trophy-container">
+                    <i class="ph ph-trophy trophy-icon"></i>
+                </div>
+                <h2>Treino Concluído!</h2>
+                <div class="score-circle">
+                    <h1 id="resultado-nota">8/10</h1>
+                </div>
+                <p id="resultado-msg" class="text-muted">Excelente desempenho!</p>
+                
+                <div class="action-buttons">
+                    <button class="btn-secondary" onclick="resetarTelaQuiz()"><i class="ph ph-arrow-left"></i> Voltar</button>
+                    <button class="btn-success btn-glow" onclick="salvarQuizNoTracker()"><i class="ph ph-chart-line-up"></i> Salvar Desempenho</button>
+                </div>
+            </div>
+        </section>
+
         <section id="bancos-questoes" class="tab-content">
-            <h1>Arsenal de Questões</h1>
-            <p>Plataformas gratuitas recomendadas para treinar a teoria após o vídeo e jogar a nota no Tracker.</p>
-            
+            <div class="header-tab">
+                <h1>Arsenal de Questões Externas</h1>
+                <p>Plataformas gratuitas para procurar provas além do nosso simulador nativo.</p>
+            </div>
             <div class="redacao-grid">
-                <div class="redacao-card" style="border-top-color: #3b82f6;">
-                    <h3><i class="ph ph-magnifying-glass"></i> Qconcursos</h3>
-                    <p>O maior do Brasil. Permite resolver 10 questões gratuitas por dia. Excelente para ler os comentários de outros alunos.</p>
-                    <div class="topic-item">
-                        <h4>Filtro Exato para a FATEC:</h4>
-                        <p>• <b>Banca:</b> Centro Paula Souza ou FAT<br>
-                           • <b>Instituição:</b> FATEC<br>
-                           • <b>Disciplina:</b> (Ex: Matemática)<br>
-                           • <b>Assunto:</b> (Ex: Regra de Três)</p>
-                    </div>
-                    <a href="https://www.qconcursos.com/questoes-de-concursos/questoes" target="_blank" class="btn-external" style="background: #3b82f6; margin-top: 15px;"><i class="ph ph-link"></i> Abrir Qconcursos</a>
+                <div class="redacao-card glass-panel" style="border-top-color: var(--accent);">
+                    <h3><i class="ph ph-magnifying-glass text-accent"></i> Qconcursos</h3>
+                    <p class="text-muted">O maior do Brasil. Excelente para ler os comentários de outros alunos.</p>
+                    <a href="https://www.qconcursos.com/questoes-de-concursos/questoes" target="_blank" class="btn-external bg-accent"><i class="ph ph-link"></i> Aceder ao Qconcursos</a>
                 </div>
-
-                <div class="redacao-card" style="border-top-color: #10b981;">
-                    <h3><i class="ph ph-student"></i> Estuda.com</h3>
-                    <p>Plataforma muito amigável voltada para o ENEM e Vestibulares tradicionais. Ótima para treinar no celular.</p>
-                    <div class="topic-item">
-                        <h4>Filtro Exato para a FATEC:</h4>
-                        <p>• Menu Esquerdo: <b>Questões</b><br>
-                           • <b>Instituição:</b> FATEC (SP)<br>
-                           • <b>Disciplina & Assunto:</b> De acordo com o card do cronograma do dia.</p>
-                    </div>
-                    <a href="https://app.estuda.com/questoes/" target="_blank" class="btn-external" style="background: #10b981; margin-top: 15px;"><i class="ph ph-link"></i> Abrir Estuda.com</a>
+                <div class="redacao-card glass-panel" style="border-top-color: var(--correct);">
+                    <h3><i class="ph ph-student text-correct"></i> Estuda.com</h3>
+                    <p class="text-muted">Plataforma muito interativa focada em vestibulares. Ótima no telemóvel.</p>
+                    <a href="https://app.estuda.com/questoes/" target="_blank" class="btn-external bg-correct"><i class="ph ph-link"></i> Aceder ao Estuda.com</a>
                 </div>
-
-                <div class="redacao-card" style="border-top-color: #f59e0b;">
-                    <h3><i class="ph ph-terminal-window"></i> O "Hack" do Google</h3>
-                    <p>Se as cotas diárias gratuitas dos sites acabarem, use esta técnica de busca no Google para achar questões resolvidas.</p>
-                    <div class="topic-item">
-                        <h4>O que digitar na pesquisa:</h4>
-                        <p><i>"FATEC eletrodinâmica potencia site:brainly.com.br"</i></p>
-                        <p style="margin-top: 8px;"><i>"FATEC conectivos site:qconcursos.com"</i></p>
-                        <p style="margin-top: 8px; color: #64748b;">*O comando "site:" fura os bloqueios e leva direto para a questão.</p>
-                    </div>
+                <div class="redacao-card glass-panel" style="border-top-color: var(--warning);">
+                    <h3><i class="ph ph-terminal-window text-warning"></i> O "Hack" do Google</h3>
+                    <p class="text-muted">Comando: <i>"FATEC eletrodinâmica site:brainly.com.br"</i> para furar bloqueios de pagamento e achar resoluções.</p>
                 </div>
             </div>
         </section>
 
         <section id="simulados" class="tab-content">
-            <h1>Desempenho Granular</h1>
+            <h1>Evolução de Desempenho</h1>
             <div class="tracker-container">
-                <div class="form-card">
-                    <h3>Registrar Treino / Simulado</h3>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
-                        <select id="sim-materia">
-                            <option value="Geral (Prova Completa)">Geral (Prova Completa)</option>
-                            <option value="Matemática">Matemática</option>
-                            <option value="Lógica">Raciocínio Lógico</option>
-                            <option value="Português">Português</option>
-                            <option value="Inglês">Inglês</option>
-                            <option value="Física">Física</option>
-                            <option value="Química">Química</option>
-                            <option value="Biologia">Biologia</option>
-                            <option value="História">História</option>
-                            <option value="Geografia">Geografia</option>
-                        </select>
-                        <select id="sim-origem">
-                            <option value="Prova 2026.1">Prova 2026.1</option>
-                            <option value="Prova 2025.2">Prova 2025.2</option>
-                            <option value="Prova 2025.1">Prova 2025.1</option>
-                            <option value="Treino Externo (Qconcursos/Estuda)">Treino Externo</option>
-                        </select>
+                <div class="form-card glass-panel">
+                    <h3><i class="ph ph-plus-circle"></i> Registar Manualmente</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                        <div>
+                            <label class="modern-label">Matéria</label>
+                            <select id="sim-materia" class="modern-select">
+                                <option value="Misto (Simulador App)">Misto (Simulador do App)</option>
+                                <option value="Geral (Prova Completa)">Geral (Prova Completa)</option>
+                                <option value="Matemática">Matemática</option>
+                                <option value="Lógica">Raciocínio Lógico</option>
+                                <option value="Português">Português</option>
+                                <option value="Física">Física</option>
+                                <option value="Química">Química</option>
+                                <option value="Biologia">Biologia</option>
+                                <option value="História">História</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="modern-label">Origem</label>
+                            <select id="sim-origem" class="modern-select">
+                                <option value="App Tracker (IA)">Simulador App (IA)</option>
+                                <option value="Prova 2026.1">Prova 2026.1</option>
+                                <option value="Prova 2025.2">Prova 2025.2</option>
+                                <option value="Treino Externo">Treino Externo</option>
+                            </select>
+                        </div>
                     </div>
-                    
-                    <div style="display: flex; gap: 10px; margin-top: 15px;">
-                        <input type="number" id="sim-nota" placeholder="Acertos (Ex: 7)" style="margin-top: 0;">
-                        <span style="display: flex; align-items: center; font-weight: bold; color: #64748b;">DE</span>
-                        <input type="number" id="sim-total" placeholder="Total (Ex: 8)" style="margin-top: 0;">
+                    <div class="input-group-inline" style="margin-top: 15px;">
+                        <input type="number" id="sim-nota" class="modern-input" placeholder="Acertos (Ex: 7)">
+                        <span class="divider">DE</span>
+                        <input type="number" id="sim-total" class="modern-input" placeholder="Total (Ex: 8)">
                     </div>
-
-                    <button class="btn-primary" onclick="adicionarSimulado()">Salvar Desempenho</button>
+                    <button class="btn-primary" style="margin-top: 20px;" onclick="adicionarSimulado()"><i class="ph ph-floppy-disk"></i> Guardar Desempenho</button>
                 </div>
-                <div class="chart-card">
+                <div class="chart-card glass-panel">
                     <canvas id="graficoSimulados"></canvas>
                 </div>
             </div>
@@ -207,72 +272,65 @@
 
         <section id="redacoes" class="tab-content">
             <h1>Laboratório de Redação</h1>
-            <p>Siga o framework e registre sua evolução.</p>
+            <p>Segue o *framework* de excelência e regista a tua evolução.</p>
             
             <div class="redacao-grid" style="margin-bottom: 40px;">
-                <div class="redacao-card" style="border-top-color: #10b981;">
-                    <h3>1. Estrutura Perfeita</h3>
-                    <div class="topic-item"><h4>Introdução (5-7 linhas)</h4><p>Apresente o tema (Repertório) + Realidade + Tese.</p></div>
-                    <div class="topic-item"><h4>Desenvolvimento 1 e 2 (7-9 linhas)</h4><p>Tópico frasal + Explicação + Exemplo + Conclusão.</p></div>
-                    <div class="topic-item"><h4>Conclusão (5-7 linhas)</h4><p>Retome a tese + Proponha reflexão ou solução.</p></div>
+                <div class="redacao-card glass-panel" style="border-top-color: var(--correct);">
+                    <h3><i class="ph ph-pen text-correct"></i> Estrutura Perfeita</h3>
+                    <div class="topic-item"><h4>Introdução (5-7 linhas)</h4><p class="text-muted">Tema (Repertório) + Realidade + Tese.</p></div>
+                    <div class="topic-item"><h4>Desenvolvimento 1 e 2 (7-9 linhas)</h4><p class="text-muted">Tópico frasal + Explicação + Exemplo + Conclusão.</p></div>
+                    <div class="topic-item"><h4>Conclusão (5-7 linhas)</h4><p class="text-muted">Retoma a tese + Propõe reflexão/solução.</p></div>
                 </div>
-                <div class="redacao-card" style="border-top-color: #f59e0b;">
-                    <h3>2. Conectivos de Ouro</h3>
-                    <div class="topic-item"><h4>• Para Desenvolvimento:</h4><p>"Sob esse viés...", "Em primeiro lugar...", "Ademais..."</p></div>
-                    <div class="topic-item"><h4>• Para Conclusão:</h4><p>"Portanto...", "Infere-se, logo, que...", "Em suma..."</p></div>
+                <div class="redacao-card glass-panel" style="border-top-color: var(--warning);">
+                    <h3><i class="ph ph-link text-warning"></i> Conectivos de Ouro</h3>
+                    <div class="topic-item"><h4>Para Desenvolvimento:</h4><p class="text-muted">"Sob este viés...", "Em primeiro lugar...", "Ademais..."</p></div>
+                    <div class="topic-item"><h4>Para Conclusão:</h4><p class="text-muted">"Portanto...", "Infere-se, logo, que...", "Em suma..."</p></div>
                 </div>
-                <div class="redacao-card" style="border-top-color: #3b82f6;">
-                    <h3>3. Repertórios Coringas</h3>
-                    <div class="topic-item"><h4>• Zygmunt Bauman</h4><p>Use para relações superficiais, imediatismo e redes sociais.</p></div>
-                    <div class="topic-item"><h4>• Revolução Industrial</h4><p>Use para mercado de trabalho, tecnologia e automação.</p></div>
+                <div class="redacao-card glass-panel" style="border-top-color: var(--accent);">
+                    <h3><i class="ph ph-books text-accent"></i> Repertórios Coringas</h3>
+                    <div class="topic-item"><h4>Zygmunt Bauman</h4><p class="text-muted">Para relações superficiais, imediatismo e redes sociais.</p></div>
+                    <div class="topic-item"><h4>Revolução Industrial</h4><p class="text-muted">Para mercado de trabalho, tecnologia e automação.</p></div>
                 </div>
             </div>
-
-            <div class="tracker-container" style="border-top: 2px dashed #cbd5e1; padding-top: 30px;">
-                <div class="form-card">
-                    <h3>Registrar Nova Redação</h3>
-                    <input type="text" id="red-tema" placeholder="Tema da Redação (Ex: Impacto da IA)">
-                    <input type="number" id="red-nota" placeholder="Nota Estimada (0 a 100)" max="100">
-                    <textarea id="red-obs" placeholder="O que melhorar? (Ex: Faltou conectivo no 2º parágrafo)" rows="3"></textarea>
-                    <button class="btn-primary" onclick="adicionarRedacao()">Salvar Histórico</button>
-                </div>
-                <div id="lista-redacoes" class="history-list full-width"></div>
+            
+            <div class="form-card glass-panel" style="max-width: 800px; margin: 0 auto 30px auto;">
+                <h3>Registar Nova Redação</h3>
+                <input type="text" id="red-tema" class="modern-input" placeholder="Tema da Redação (Ex: Impacto da IA)">
+                <input type="number" id="red-nota" class="modern-input" placeholder="Nota Estimada (0 a 100)" max="100">
+                <textarea id="red-obs" class="modern-input" placeholder="O que melhorar? (Ex: Faltou conectivo no 2º parágrafo)" rows="3"></textarea>
+                <button class="btn-primary" style="margin-top: 15px;" onclick="adicionarRedacao()"><i class="ph ph-check"></i> Guardar Histórico</button>
             </div>
+            <div id="lista-redacoes" class="history-list full-width"></div>
         </section>
 
         <section id="provas-pdf" class="tab-content">
-            <h1>Biblioteca de Provas</h1>
-            <p>Selecione uma edição para iniciar o Modo Simulado.</p>
-            
+            <div class="header-tab">
+                <h1>Biblioteca de Provas Oficiais</h1>
+                <p>Abre o PDF e resolve num ambiente focado, sem distrações.</p>
+            </div>
             <div id="pdf-container-main">
                 <div class="provas-grid" id="seletor-provas">
-                    <div class="prova-card" onclick="carregarProva('ProvaFatec 2026-1sem.pdf', '2026.1')">
-                        <i class="ph ph-file-pdf"></i>
-                        <h4>Fatec 2026.1</h4>
-                        <span>60 Questões</span>
+                    <div class="prova-card glass-panel" onclick="carregarProva('ProvaFatec 2026-1sem.pdf', '2026.1')">
+                        <i class="ph ph-file-pdf"></i><h4>Fatec 2026.1</h4><span class="badge">60 Questões</span>
                     </div>
-                    <div class="prova-card" onclick="carregarProva('ProvaFatec 2025-2sem.pdf', '2025.2')">
-                        <i class="ph ph-file-pdf"></i>
-                        <h4>Fatec 2025.2</h4>
-                        <span>64 Questões</span>
+                    <div class="prova-card glass-panel" onclick="carregarProva('ProvaFatec 2025-2sem.pdf', '2025.2')">
+                        <i class="ph ph-file-pdf"></i><h4>Fatec 2025.2</h4><span class="badge">64 Questões</span>
                     </div>
-                    <div class="prova-card" onclick="carregarProva('ProvaFatec - 2025-1sem.pdf', '2025.1')">
-                        <i class="ph ph-file-pdf"></i>
-                        <h4>Fatec 2025.1</h4>
-                        <span>54 Questões</span>
+                    <div class="prova-card glass-panel" onclick="carregarProva('ProvaFatec 2025-1sem.pdf', '2025.1')">
+                        <i class="ph ph-file-pdf"></i><h4>Fatec 2025.1</h4><span class="badge">54 Questões</span>
                     </div>
                 </div>
 
-                <div id="pdf-viewer-pro" class="hidden">
+                <div id="pdf-viewer-pro" class="hidden glass-panel">
                     <div class="viewer-header">
-                        <button class="btn-voltar" onclick="fecharProva()"><i class="ph ph-arrow-left"></i> Voltar à Biblioteca</button>
+                        <button class="btn-secondary" onclick="fecharProva()"><i class="ph ph-arrow-left"></i> Voltar</button>
                         <h3 id="pdf-title-display">Prova Selecionada</h3>
-                        <button class="btn-gabarito" onclick="toggleGabarito()"><i class="ph ph-check-square-offset"></i> Ver Gabarito</button>
+                        <button class="btn-success" onclick="toggleGabarito()"><i class="ph ph-check-square-offset"></i> Ver Gabarito</button>
                     </div>
                     <div class="viewer-layout">
                         <iframe id="pdf-frame" src=""></iframe>
-                        <div id="side-gabarito" class="hidden">
-                            <h3>Respostas Oficiais</h3>
+                        <div id="side-gabarito" class="hidden glass-inner">
+                            <h3 style="color: white; margin-bottom: 15px; text-align: center;">Gabarito Oficial</h3>
                             <div id="gab-list-display" class="gab-grid-new"></div>
                         </div>
                     </div>
@@ -282,15 +340,17 @@
 
     </main>
 
+    <script src="questoes.js"></script>
     <script src="app.js"></script>
+    
     <script>
         function openTab(evt, tabName) {
             let i, tabcontent, navitems;
             tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
+            for (i = 0; i < tabcontent.length; i++) tabcontent[i].classList.remove("active");
             navitems = document.getElementsByClassName("nav-item");
             for (i = 0; i < navitems.length; i++) navitems[i].classList.remove("active");
-            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
     </script>
